@@ -4,6 +4,7 @@ import 'package:youtube/home.dart';
 void main() {
   runApp( MaterialApp(
     home: Home(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
