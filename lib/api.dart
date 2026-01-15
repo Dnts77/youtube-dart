@@ -1,0 +1,2 @@
+const YOUTUBE_API_KEY = "AIzaSyCCONVFbZBpBPPfnN4gJQl7Hmci3olA3LU";
+const CHANNEL_ID = "UCwXdFgeE9KYzlDdR7TG9cMw";
