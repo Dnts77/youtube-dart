@@ -47,7 +47,10 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: telas[_currentIndex],
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: telas[_currentIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         elevation: 2,
