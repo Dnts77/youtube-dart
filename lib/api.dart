@@ -8,7 +8,7 @@ const CHANNEL_ID = "UCwXdFgeE9KYzlDdR7TG9cMw";
 const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 class Api {
- Future pesquisar(String pesquisa) async{
+ Future<List<Video>> pesquisar(String pesquisa) async{
     http.Response response = await http.get(Uri.parse(
       "$BASE_URL/search"
       "?part=snippet"
@@ -30,9 +30,7 @@ class Api {
         }
       ).toList();
 
-      for (var video in videos) {
-        log("Resultado: ${video.titulo}");
-      }
+      return videos;
 
       /*for (var video in jsonData["items"]) {
         log("Resultado: ${video.toString()}");
@@ -43,5 +41,6 @@ class Api {
     else{
       log("resposta: paia");
     }
+    throw '';
   }
 }
