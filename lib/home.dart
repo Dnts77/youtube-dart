@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube/custom_search_delegate.dart';
 import 'package:youtube/screens/biblioteca.dart';
 import 'package:youtube/screens/em_alta.dart';
 import 'dart:developer';
@@ -13,11 +14,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  
   int _currentIndex = 0;
+  String _resultado = "";
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> telas = [Inicio(), EmAlta(), Inscricao(), Biblioteca()];
+    List<Widget> telas = [Inicio(_resultado), EmAlta(), Inscricao(), Biblioteca()];
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +30,25 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         title: Image.asset("imgs/youtube.png", width: 120, height: 22),
         actions: [
+
           IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () async {
+              String res = (await showSearch(
+                context: context, 
+                delegate: CustomSearchDelegate()
+                ))!;
+                setState(() {
+                  _resultado = res;
+                });
+
+                
+                
+                log("resultado digitado $res");
+            },
+          ),
+          
+         /* IconButton(
             onPressed: () {
               log("Ação: VideoCam");
             },
@@ -43,8 +64,8 @@ class _HomeState extends State<Home> {
             onPressed: () {
               log("Ação: Conta");
             },
-            icon: Icon(Icons.account_circle),
-          ),
+            icon: Icon(Icons.account_circle),*/
+        
         ],
       ),
       body: Container(

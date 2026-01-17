@@ -1,10 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:youtube/api.dart';
 import 'package:youtube/model/video.dart';
 
 
+// ignore: must_be_immutable
 class Inicio extends StatefulWidget {
-  const Inicio({super.key});
+  
+
+  String pesquisa;
+
+ Inicio(this.pesquisa, {super.key});
 
   @override
   State<Inicio> createState() => _InicioState();
@@ -12,13 +19,13 @@ class Inicio extends StatefulWidget {
 
 class _InicioState extends State<Inicio> {
 
-  _listVideo(){
-    Future<List<Video>> videos;
+   _listVideo(String pesquisa){
+    
     
     Api api = Api();
     
     
-    return api.pesquisar("");
+    return api.pesquisar(pesquisa);
   }
 
   @override
@@ -28,14 +35,18 @@ class _InicioState extends State<Inicio> {
     
     
     return FutureBuilder<List<Video>>(
-      future: _listVideo(), 
+      future: _listVideo(widget.pesquisa), 
       builder: (context, snapshot){
         switch(snapshot.connectionState){
           case ConnectionState.none:
+            if(snapshot.hasError){
+              log("Erro ao carregar vídeos");
+            }
+            throw '';
           case ConnectionState.active:
           case ConnectionState.waiting:
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(color: Colors.red,),
             );
             
           case ConnectionState.done:
@@ -72,15 +83,15 @@ class _InicioState extends State<Inicio> {
                 );
             }
             else{
-              Center(
+              return Center(
               child: Text("Nenhum dado a ser exibido."),
             );
             }
 
-            break;
+           
 
         }
-        throw '';
+        
       }
       );
     

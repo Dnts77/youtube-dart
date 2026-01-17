@@ -30,6 +30,7 @@ class Api {
         }
       ).toList();
 
+      log("Vídeos encontrados: ${videos.length}");
       return videos;
 
       /*for (var video in jsonData["items"]) {
@@ -39,8 +40,8 @@ class Api {
       //log("resposta:${jsonData["items"][0]["snippet"]["title"].toString()}");
     }
     else{
-      log("resposta: paia");
+      log("Erro na API: statusCode=${response.statusCode}, body=${response.body}");
+      return [];
     }
-    throw '';
   }
 }
