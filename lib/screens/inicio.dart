@@ -1,5 +1,6 @@
 import 'dart:developer';
-
+import 'package:youtube/screens/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube/api.dart';
 import 'package:youtube/model/video.dart';
@@ -28,12 +29,17 @@ class _InicioState extends State<Inicio> {
     return api.pesquisar(pesquisa);
   }
 
+ 
+  
+  
+
+  
+
   @override
   Widget build(BuildContext context) {
 
 
-    
-    
+  
     return FutureBuilder<List<Video>>(
       future: _listVideo(widget.pesquisa), 
       builder: (context, snapshot){
@@ -57,7 +63,17 @@ class _InicioState extends State<Inicio> {
                   List<Video> videos = snapshot.data!;
                   Video video = videos[index];
 
-                  return Column(
+                  return GestureDetector(
+                    onTap: (){
+                      
+                     Navigator.push(context, 
+                     MaterialPageRoute(
+                      builder: (context) => VideoView(video.id.toString())
+                      )
+                     );
+                     
+                    },
+                    child: Column(
                     children: [
                       Container(
                         height: 200,
@@ -73,6 +89,7 @@ class _InicioState extends State<Inicio> {
                         subtitle: Text(video.canal!),
                       )
                     ],
+                  ),
                   );
                 }, 
                 separatorBuilder: (context, index) => Divider(
