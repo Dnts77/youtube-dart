@@ -42,7 +42,31 @@ class CustomSearchDelegate extends SearchDelegate<String>{
 
   @override
   Widget buildSuggestions(BuildContext context) {
+
     return Container();
+    /*List<String> lista = [];
+
+    if(query.isNotEmpty){
+      lista = ["Android", "IOS", "Jaspr", "Dart"].
+      where(
+        (texto)=> texto.toLowerCase().startsWith(query.toLowerCase())
+        ).toList();
+    return ListView.builder(
+      itemCount: lista.length,
+      itemBuilder: (context, index){
+        return ListTile(
+          onTap: (){
+            close(context, lista[index]);
+          },
+          title: Text(lista[index]),
+        );
+      }
+      );
+    }
+    else{
+      return Center(child: Text("Nenhum resultado encontrado"));
+      
+    }*/
 
 }
 }
